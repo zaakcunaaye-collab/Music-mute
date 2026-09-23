@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Music Mute - remove audio from videos and download silent copies.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Music Mute</title>
+</head>
+<body>
+  <div id="adOverlay" class="ad-overlay hidden" aria-hidden="true">
+    <div class="ad-card">
+      <div class="ad-label">ADVERTISEMENT</div>
+      <div class="ad-circle" id="adTimer">10</div>
+      <h2>Music Mute</h2>
+      <p>Your app is getting ready…</p>
+      <button id="closeAd" class="btn secondary" disabled>Continue</button>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">♪</div>
+      <div>
+        <h1>Music Mute</h1>
+        <span>Video without background music</span>
+      </div>
+    </div>
+    <button id="settingsBtn" class="icon-btn" aria-label="Settings">⚙️</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-icon">🎵</div>
+      <h2>Mute your video</h2>
+      <p>Choose a video from your phone, remove its audio, and save a silent copy.</p>
+    </section>
+
+    <section class="panel">
+      <label class="upload-box" for="videoInput">
+        <span class="upload-icon">＋</span>
+        <strong>Select video</strong>
+        <small>MP4, WebM and other browser-supported videos</small>
+      </label>
+      <input id="videoInput" type="file" accept="video/*" hidden>
+      <div id="fileName" class="file-name"></div>
+
+      <button id="muteBtn" class="btn primary" disabled>🔇 MUTE VIDEO</button>
+      <div id="progressWrap" class="progress-wrap hidden">
+        <div class="progress-track"><div id="progress" class="progress"></div></div>
+        <span id="status">Preparing…</span>
+      </div>
+      <a id="downloadBtn" class="btn download hidden" download="music-mute-video.webm">⬇️ DOWNLOAD VIDEO</a>
+      <p class="note">This local-video mode removes the entire audio track. It does not separate speech from music.</p>
+    </section>
+
+    <section class="panel">
+      <h3>🔗 Paste video link</h3>
+      <input id="urlInput" class="text-input" type="url" placeholder="Paste a direct video URL">
+      <button id="urlBtn" class="btn secondary">PROCESS LINK</button>
+      <p id="urlStatus" class="note"></p>
+      <p class="note">A normal YouTube/TikTok/Facebook page URL cannot be downloaded by this PWA alone. A server/API is required and must respect the source's terms and rights.</p>
+    </section>
+
+    <section class="features">
+      <div><b>🔇</b><span>Mute audio</span></div>
+      <div><b>⬇️</b><span>Download</span></div>
+      <div><b>🌙</b><span>Dark / Light</span></div>
+      <div><b>⚡</b><span>Fast & simple</span></div>
+    </section>
+  </main>
+
+  <aside id="settings" class="settings hidden">
+    <div class="settings-head">
+      <h2>Settings</h2>
+      <button id="settingsClose" class="icon-btn">✕</button>
+    </div>
+    <div class="setting-row">
+      <div><strong>Theme</strong><small>Choose app appearance</small></div>
+      <select id="themeSelect">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="system">System</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <div><strong>Online ads</strong><small>10-second opening ad when online</small></div>
+      <label class="switch"><input id="adsToggle" type="checkbox" checked><span></span></label>
+    </div>
+    <p class="note">The opening ad screen in this starter is a 10-second placeholder. A real ad network requires its own approved ad SDK/tag and account.</p>
+  </aside>
+
+  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
